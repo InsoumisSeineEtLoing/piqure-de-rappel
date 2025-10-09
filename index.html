@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Piqûres de Rappel – Journal des Insoumis·es Seine & Loing</title>
 
+  <!-- Suivi Counter.dev -->
   <script src="https://cdn.counter.dev/script.js" data-id="3d8c2ad5-2fe6-438d-bfbe-cf0e3bd72325" data-utcoffset="2"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2eaeb;
+      background-color: #f2eaeb; /* couleur douce */
       color: #222;
       max-width: 800px;
       margin: 40px auto;
@@ -20,28 +21,31 @@
 
     header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
     }
 
     /* Bloc LFI + RS */
     .left-logo {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
     }
 
     .left-logo img {
-      width: 180px;  /* plus grand qu’avant */
+      width: 220px;  /* logo plus grand */
       height: auto;
     }
 
     .social-links {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      margin-left: 10px;
     }
 
     .social-links a {
@@ -54,20 +58,14 @@
     }
 
     .social-links img {
-      width: 22px;
-      height: 22px;
-    }
-
-    /* Logo de la piqûre */
-    .right-logo {
-      margin-top: 20px; /* espace entre RS et logo */
-      display: flex;
-      justify-content: center;
+      width: 18px;
+      height: 18px;
     }
 
     .right-logo img {
-      height: 140px;  /* plus petit */
+      height: 160px;
       width: auto;
+      margin-top: 30px; /* Ajoute de l'espace au-dessus du logo de droite */
     }
 
     h2 {
@@ -78,6 +76,7 @@
 
     p {
       text-align: center;
+      margin-bottom: 32px; /* Ajustez la valeur selon votre besoin */
     }
 
     ul {
@@ -104,6 +103,26 @@
       color: #777;
       text-align: center;
     }
+
+    /* Responsive (mobile) */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-logo {
+        align-items: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .right-logo {
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
 
@@ -115,22 +134,21 @@
       <div class="social-links">
         <a href="https://www.instagram.com/lfi_msl/" target="_blank">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-          Instagram
+          <span style="font-size: 0.95em;">Instagram</span>
         </a>
         <a href="https://www.facebook.com/people/Insoumis-Seine-Loing/61570853821046/" target="_blank">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-          Facebook
+          <span style="font-size: 0.95em;">Facebook</span>
         </a>
       </div>
     </div>
-
     <div class="right-logo">
       <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Logo La Piqûre de Rappel">
     </div>
   </header>
 
   <p>Le journal local des Insoumis·es Seine & Loing.<br>
-  Retrouvez ici tous les numéros publiés depuis 2025.</p>
+  Retrouvez ici tous les numéros publiés depuis 2022.</p>
 
   <h2>Numéros disponibles :</h2>
   <ul>
