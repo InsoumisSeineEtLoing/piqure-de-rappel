@@ -2,109 +2,43 @@ name: Auto-update site (sitemap, schema & index + Google ping)
 
 on:
   push:
-    paths:
-      - "pdfs/*.pdf"
+    branches:
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: 3.x
+          node-version: '20'
 
-      - name: Update sitemap, schema and index
+      - name: Generate sitemap.xml
         run: |
-          python << 'EOF'
-          import os, datetime, json, re, requests
-
-          BASE_URL = "https://insoumisseineetloing.github.io/piqure-de-rappel"
-          PDF_DIR = "pdfs"
-          INDEX_FILE = "index.html"
-          SITEMAP = "sitemap.xml"
-          SCHEMA = "article-schema.json"
-
-          # --- Lister les PDF ---
-          pdfs = sorted([f for f in os.listdir(PDF_DIR) if f.endswith(".pdf")])
-          print(f"Found {len(pdfs)} PDFs.")
-
-          # --- Générer sitemap.xml ---
-          with open(SITEMAP, "w", encoding="utf-8") as f:
-              f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-              f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-              f.write(f'  <url><loc>{BASE_URL}/</loc><priority>1.0</priority></url>\n')
-              for pdf in pdfs:
-                  f.write(f'  <url><loc>{BASE_URL}/{PDF_DIR}/{pdf}</loc><priority>0.6</priority></url>\n')
-              f.write('</urlset>\n')
-          print("✅ sitemap.xml updated.")
-
-          # --- Générer article-schema.json ---
-          schema = {
-              "@context": "https://schema.org",
-              "@type": "NewsMediaOrganization",
-              "name": "La Piqûre de Rappel",
-              "url": BASE_URL,
-              "logo": f"{BASE_URL}/Logo_la_piqure_de_rappel_sans_fond.png",
-              "publisher": {"@type": "Organization", "name": "Insoumis·es Seine & Loing"},
-              "article": []
-          }
-
-          for pdf in pdfs:
-              num = pdf.replace(".pdf", "")
-              date = datetime.date.today().isoformat()
-              schema["article"].append({
-                  "@type": "NewsArticle",
-                  "headline": f"La Piqûre de Rappel – {num}",
-                  "datePublished": date,
-                  "url": f"{BASE_URL}/{PDF_DIR}/{pdf}",
-                  "description": f"Numéro {num} du journal local et engagé des Insoumis·es Seine & Loing."
-              })
-
-          with open(SCHEMA, "w", encoding="utf-8") as f:
-              json.dump(schema, f, indent=2, ensure_ascii=False)
-          print("✅ article-schema.json updated.")
-
-          # --- Mettre à jour index.html ---
-          with open(INDEX_FILE, "r", encoding="utf-8") as f:
-              html = f.read()
-
-          new_list = "\n".join(
-              [f'    <li><a href="pdfs/{pdf}" target="_blank">{pdf.replace(".pdf", "").replace("N", "Numéro ")}</a></li>'
-              for pdf in pdfs]
-          )
-
-          updated_html = re.sub(
-              r"<ul>.*?</ul>",
-              f"<ul>\n{new_list}\n  </ul>",
-              html,
-              flags=re.DOTALL
-          )
-
-          with open(INDEX_FILE, "w", encoding="utf-8") as f:
-              f.write(updated_html)
-          print("✅ index.html updated.")
-
-          # --- Envoyer un ping à Google pour re-indexation ---
-          ping_url = f"https://www.google.com/ping?sitemap={BASE_URL}/sitemap.xml"
-          try:
-              response = requests.get(ping_url)
-              if response.status_code == 200:
-                  print("🚀 Google notified successfully!")
-              else:
-                  print(f"⚠️ Google ping failed with code {response.status_code}")
-          except Exception as e:
-              print(f"❌ Error notifying Google: {e}")
-
-          EOF
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          for f in $(ls pdfs/*.pdf); do
+            echo "  <url><loc>https://insoumisseineetloing.github.io/piqure-de-rappel/$f</loc><priority>0.7</priority></url>" >> sitemap.xml
+          done
+          echo '  <url><loc>https://insoumisseineetloing.github.io/piqure-de-rappel/</loc><priority>1.0</priority></url>' >> sitemap.xml
+          echo '</urlset>' >> sitemap.xml
 
       - name: Commit and push changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add sitemap.xml article-schema.json index.html
-          git commit -m "Auto-update sitemap, schema & index + Google ping"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Auto-update sitemap" || echo "No changes to commit"
+          git push origin main || echo "Nothing to push"
+
+      - name: Notify Google of sitemap update
+        run: |
+          curl -X GET "https://www.google.com/ping?sitemap=https://insoumisseineetloing.github.io/piqure-de-rappel/sitemap.xml"
