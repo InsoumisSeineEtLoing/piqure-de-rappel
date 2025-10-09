@@ -34,11 +34,18 @@ jobs:
           # Sauvegarde de l'ancien index
           cp $INDEX_FILE index_backup_$(date +%Y%m%d_%H%M%S).html
 
-          # Supprime toutes les anciennes lignes PDF
+          # Supprime toutes les anciennes lignes PDF ou test
           sed -i '/href="pdfs\//d' "$INDEX_FILE"
+          sed -i '/href="piqûre/d' "$INDEX_FILE"
+          sed -i '/href=".pdf"/d' "$INDEX_FILE"
 
           echo "Génération des nouvelles entrées..."
           for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
+            # Ignore le fichier .keep
+            if [[ "$(basename "$pdf")" == ".keep" ]]; then
+              continue
+            fi
+
             name=$(basename "$pdf" .pdf)
 
             # Vérifie si le nom correspond au modèle Nxxx_YYYY-MM
@@ -66,7 +73,7 @@ jobs:
 
               title="Numéro $((10#$num)) – $month_name $year"
             else
-              # Si le fichier n’a pas ce format, on garde le nom brut
+              # Si le fichier n’a pas ce format, on garde le nom brut sans extension
               title="$name"
             fi
 
@@ -77,6 +84,9 @@ jobs:
           echo "[" > temp_schema.json
           for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
             name=$(basename "$pdf")
+            if [[ "$name" == ".keep" ]]; then
+              continue
+            fi
             link="$BASE_URL/$pdf"
             echo "  {\"@type\": \"CreativeWork\", \"name\": \"$name\", \"url\": \"$link\"}," >> temp_schema.json
           done
@@ -88,6 +98,10 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > $SITEMAP_FILE
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $SITEMAP_FILE
           for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
+            name=$(basename "$pdf")
+            if [[ "$name" == ".keep" ]]; then
+              continue
+            fi
             echo "  <url><loc>$BASE_URL/$pdf</loc><priority>0.7</priority></url>" >> $SITEMAP_FILE
           done
           echo "  <url><loc>$BASE_URL/</loc><priority>1.0</priority></url>" >> $SITEMAP_FILE
@@ -98,7 +112,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html article-schema.json sitemap.xml
-          git commit -m "Auto-update index with smart PDF titles" || echo "Aucun changement à valider"
+          git commit -m "Auto-update index with smart PDF titles (clean version)" || echo "Aucun changement à valider"
           git push origin main || echo "Rien à pousser"
 
       - name: Ping Google for sitemap refresh
