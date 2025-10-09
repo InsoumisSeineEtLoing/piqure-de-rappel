@@ -1,4 +1,4 @@
-name: Auto-update site (sitemap, schema & index + Google ping)
+name: Auto-update site (sitemap, index, schema & Google ping)
 
 on:
   push:
@@ -21,23 +21,59 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate sitemap.xml
+      - name: Update index.html, article-schema.json, and sitemap.xml
         run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
-          for f in $(ls pdfs/*.pdf); do
-            echo "  <url><loc>https://insoumisseineetloing.github.io/piqure-de-rappel/$f</loc><priority>0.7</priority></url>" >> sitemap.xml
+          echo "=== Génération automatique ==="
+
+          # Variables
+          BASE_URL="https://insoumisseineetloing.github.io/piqure-de-rappel"
+          PDF_DIR="pdfs"
+          INDEX_FILE="index.html"
+          SCHEMA_FILE="article-schema.json"
+          SITEMAP_FILE="sitemap.xml"
+
+          echo "Mise à jour de $INDEX_FILE..."
+          echo "<!-- Auto-generated on $(date) -->" > temp_index.html
+          grep -v "<!-- Auto-generated" $INDEX_FILE >> temp_index.html
+          mv temp_index.html $INDEX_FILE
+
+          # Lister les PDF et ajouter au HTML s’ils n’y sont pas
+          for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
+            name=$(basename "$pdf")
+            link="$BASE_URL/$pdf"
+            if ! grep -q "$name" "$INDEX_FILE"; then
+              echo "Ajout du lien $name dans index.html"
+              sed -i "/<\/main>/i <p><a href=\"$link\" target=\"_blank\">$name</a></p>" "$INDEX_FILE"
+            fi
           done
-          echo '  <url><loc>https://insoumisseineetloing.github.io/piqure-de-rappel/</loc><priority>1.0</priority></url>' >> sitemap.xml
-          echo '</urlset>' >> sitemap.xml
+
+          echo "Mise à jour de $SCHEMA_FILE..."
+          echo "[" > temp_schema.json
+          for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
+            name=$(basename "$pdf")
+            link="$BASE_URL/$pdf"
+            echo "  {\"@type\": \"CreativeWork\", \"name\": \"$name\", \"url\": \"$link\"}," >> temp_schema.json
+          done
+          sed -i '$ s/,$//' temp_schema.json
+          echo "]" >> temp_schema.json
+          mv temp_schema.json $SCHEMA_FILE
+
+          echo "Mise à jour de $SITEMAP_FILE..."
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > $SITEMAP_FILE
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $SITEMAP_FILE
+          for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
+            echo "  <url><loc>$BASE_URL/$pdf</loc><priority>0.7</priority></url>" >> $SITEMAP_FILE
+          done
+          echo "  <url><loc>$BASE_URL/</loc><priority>1.0</priority></url>" >> $SITEMAP_FILE
+          echo '</urlset>' >> $SITEMAP_FILE
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "Auto-update sitemap" || echo "No changes to commit"
-          git push origin main || echo "Nothing to push"
+          git add index.html article-schema.json sitemap.xml
+          git commit -m "Auto-update index, schema & sitemap" || echo "Aucun changement à valider"
+          git push origin main || echo "Rien à pousser"
 
       - name: Notify Google of sitemap update
         run: |
