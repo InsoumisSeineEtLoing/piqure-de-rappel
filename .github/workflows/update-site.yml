@@ -1,0 +1,101 @@
+name: Auto-update site (sitemap, schema & index)
+
+on:
+  push:
+    paths:
+      - "pdfs/*.pdf"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Update sitemap, schema and index
+        run: |
+          python << 'EOF'
+          import os, datetime, json, re
+
+          BASE_URL = "https://insoumisseineetloing.github.io/piqure-de-rappel"
+          PDF_DIR = "pdfs"
+          INDEX_FILE = "index.html"
+          SITEMAP = "sitemap.xml"
+          SCHEMA = "article-schema.json"
+
+          # --- Lister les PDF ---
+          pdfs = sorted([f for f in os.listdir(PDF_DIR) if f.endswith(".pdf")])
+          print(f"Found {len(pdfs)} PDFs.")
+
+          # --- Générer sitemap.xml ---
+          with open(SITEMAP, "w", encoding="utf-8") as f:
+              f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+              f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+              f.write(f'  <url><loc>{BASE_URL}/</loc><priority>1.0</priority></url>\n')
+              for pdf in pdfs:
+                  f.write(f'  <url><loc>{BASE_URL}/{PDF_DIR}/{pdf}</loc><priority>0.6</priority></url>\n')
+              f.write('</urlset>\n')
+          print("✅ sitemap.xml updated.")
+
+          # --- Générer article-schema.json ---
+          schema = {
+              "@context": "https://schema.org",
+              "@type": "NewsMediaOrganization",
+              "name": "La Piqûre de Rappel",
+              "url": BASE_URL,
+              "logo": f"{BASE_URL}/Logo_la_piqure_de_rappel_sans_fond.png",
+              "publisher": {"@type": "Organization", "name": "Insoumis·es Seine & Loing"},
+              "article": []
+          }
+
+          for pdf in pdfs:
+              num = pdf.replace(".pdf", "")
+              date = datetime.date.today().isoformat()
+              schema["article"].append({
+                  "@type": "NewsArticle",
+                  "headline": f"La Piqûre de Rappel – {num}",
+                  "datePublished": date,
+                  "url": f"{BASE_URL}/{PDF_DIR}/{pdf}",
+                  "description": f"Numéro {num} du journal local et engagé des Insoumis·es Seine & Loing."
+              })
+
+          with open(SCHEMA, "w", encoding="utf-8") as f:
+              json.dump(schema, f, indent=2, ensure_ascii=False)
+          print("✅ article-schema.json updated.")
+
+          # --- Mettre à jour index.html ---
+          with open(INDEX_FILE, "r", encoding="utf-8") as f:
+              html = f.read()
+
+          # Générer nouvelle liste HTML
+          new_list = "\n".join(
+              [f'    <li><a href="pdfs/{pdf}" target="_blank">{pdf.replace(".pdf", "").replace("N", "Numéro ")}</a></li>'
+              for pdf in pdfs]
+          )
+
+          # Remplacer le contenu entre <ul> et </ul>
+          updated_html = re.sub(
+              r"<ul>.*?</ul>",
+              f"<ul>\n{new_list}\n  </ul>",
+              html,
+              flags=re.DOTALL
+          )
+
+          with open(INDEX_FILE, "w", encoding="utf-8") as f:
+              f.write(updated_html)
+          print("✅ index.html updated.")
+
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add sitemap.xml article-schema.json index.html
+          git commit -m "Auto-update sitemap, schema & index"
+          git push
