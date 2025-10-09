@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos – La Piqûre de Rappel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2eaeb;
+      color: #222;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #c4001a;
+      margin-bottom: 24px;
+    }
+    p {
+      text-align: justify;
+      margin-bottom: 18px;
+    }
+    a {
+      color: #c4001a;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>À propos</h1>
+
+  <p>Le <strong>Groupe d’Action Insoumis·es Seine & Loing</strong>, créé en 2017, réunit des habitantes et habitants du territoire engagés pour la justice sociale, écologique et démocratique.</p>
+
+  <p>Depuis 2022, le journal <strong>La Piqûre de Rappel</strong> relaie ses actions, ses analyses et ses luttes, dans une démarche d’éducation populaire et de réappropriation citoyenne de la parole politique.</p>
+
+  <p>Ce journal n’est pas un simple bulletin d’information.  
+  C’est un espace de réflexion, de débat et de mobilisation, où se croisent actualités locales et nationales, expériences militantes et propositions concrètes pour transformer la société.</p>
+
+  <p>Chaque numéro cherche à donner de la visibilité aux combats menés ici, sur <strong>notre territoire</strong>, mais aussi à relier ces enjeux à ceux du pays tout entier.  
+  Notre ambition : faire vivre une parole collective, claire, critique et profondément humaine.</p>
+
+  <p><strong>La Piqûre de Rappel</strong> : parce qu’il est urgent de se souvenir que la politique appartient à toutes et à tous.</p>
+
+  <footer>
+    <a href="index.html">← Retour à l’accueil</a>
+  </footer>
+</body>
+</html>
