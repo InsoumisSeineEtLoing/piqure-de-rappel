@@ -1,6 +1,5 @@
 [
-  {"@type": "CreativeWork", "name": "TEST", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/TEST"},
-  {"@type": "CreativeWork", "name": "piqûre", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/piqûre"},
+  {"@type": "CreativeWork", "name": "TEST_piqûre", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/TEST_piqûre"},
   {"@type": "CreativeWork", "name": ".pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/.pdf"},
   {"@type": "CreativeWork", "name": "N012.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N012.pdf"},
   {"@type": "CreativeWork", "name": "N011.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N011.pdf"},
