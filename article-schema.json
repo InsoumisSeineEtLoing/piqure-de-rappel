@@ -1,49 +1,17 @@
-{
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "name": "La Piqûre de Rappel",
-  "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/",
-  "logo": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png",
-  "description": "Journal du Groupe d’Action Insoumis·es Seine & Loing. La Piqûre de Rappel publie depuis 2022 des analyses, enquêtes et actualités politiques locales.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Groupe d’Action Insoumis·es Seine & Loing",
-    "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/"
-  },
-  "mainEntityOfPage": "https://insoumisseineetloing.github.io/piqure-de-rappel/",
-  "article": [
-    {
-      "@type": "NewsArticle",
-      "headline": "La Piqûre de Rappel – Numéro 12",
-      "datePublished": "2025-06-01",
-      "dateModified": "2025-06-01",
-      "author": {
-        "@type": "Organization",
-        "name": "Insoumis·es Seine & Loing"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "La Piqûre de Rappel",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png"
-        }
-      },
-      "image": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png",
-      "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N012.pdf",
-      "description": "Le douzième numéro du journal local et engagé des Insoumis·es Seine & Loing, avec analyses politiques, initiatives locales et perspectives sociales."
-    },
-    {
-      "@type": "NewsArticle",
-      "headline": "La Piqûre de Rappel – Numéro 11",
-      "datePublished": "2025-03-01",
-      "dateModified": "2025-03-01",
-      "author": {
-        "@type": "Organization",
-        "name": "Insoumis·es Seine & Loing"
-      },
-      "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N011.pdf",
-      "description": "Onzième numéro du journal politique de Seine & Loing, consacré aux luttes sociales et écologiques du territoire."
-    }
-  ]
-}
+[
+  {"@type": "CreativeWork", "name": "TEST", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/TEST"},
+  {"@type": "CreativeWork", "name": "piqûre", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/piqûre"},
+  {"@type": "CreativeWork", "name": ".pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/.pdf"},
+  {"@type": "CreativeWork", "name": "N012.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N012.pdf"},
+  {"@type": "CreativeWork", "name": "N011.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N011.pdf"},
+  {"@type": "CreativeWork", "name": "N010.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N010.pdf"},
+  {"@type": "CreativeWork", "name": "N009.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N009.pdf"},
+  {"@type": "CreativeWork", "name": "N008.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N008.pdf"},
+  {"@type": "CreativeWork", "name": "N007.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N007.pdf"},
+  {"@type": "CreativeWork", "name": "N006.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N006.pdf"},
+  {"@type": "CreativeWork", "name": "N005.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N005.pdf"},
+  {"@type": "CreativeWork", "name": "N004.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N004.pdf"},
+  {"@type": "CreativeWork", "name": "N003.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N003.pdf"},
+  {"@type": "CreativeWork", "name": "N002.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N002.pdf"},
+  {"@type": "CreativeWork", "name": "N001.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N001.pdf"}
+]
