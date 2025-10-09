@@ -1,15 +1,2 @@
 [
-  {"@type": "CreativeWork", "name": "TEST_piqûre", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/TEST_piqûre"},
-  {"@type": "CreativeWork", "name": ".pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/.pdf"},
-  {"@type": "CreativeWork", "name": "N012.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N012.pdf"},
-  {"@type": "CreativeWork", "name": "N011.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N011.pdf"},
-  {"@type": "CreativeWork", "name": "N010.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N010.pdf"},
-  {"@type": "CreativeWork", "name": "N009.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N009.pdf"},
-  {"@type": "CreativeWork", "name": "N008.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N008.pdf"},
-  {"@type": "CreativeWork", "name": "N007.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N007.pdf"},
-  {"@type": "CreativeWork", "name": "N006.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N006.pdf"},
-  {"@type": "CreativeWork", "name": "N005.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N005.pdf"},
-  {"@type": "CreativeWork", "name": "N004.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N004.pdf"},
-  {"@type": "CreativeWork", "name": "N003.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N003.pdf"},
-  {"@type": "CreativeWork", "name": "N002.pdf", "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N002.pdf"}
 ]
