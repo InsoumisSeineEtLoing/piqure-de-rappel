@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Piqûres de Rappel – Journal des Insoumis·es Seine & Loing</title>
 
-  <!-- Suivi Counter.dev -->
   <script src="https://cdn.counter.dev/script.js" data-id="3d8c2ad5-2fe6-438d-bfbe-cf0e3bd72325" data-utcoffset="2"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2eaeb; /* couleur douce */
+      background-color: #f2eaeb;
       color: #222;
       max-width: 800px;
       margin: 40px auto;
@@ -21,10 +20,9 @@
 
     header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
 
     /* Bloc LFI + RS */
@@ -32,18 +30,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .left-logo img {
-      width: 140px;  /* logo plus grand */
+      width: 180px;  /* plus grand qu’avant */
       height: auto;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 18px;
+      gap: 20px;
     }
 
     .social-links a {
@@ -60,8 +58,15 @@
       height: 22px;
     }
 
+    /* Logo de la piqûre */
+    .right-logo {
+      margin-top: 20px; /* espace entre RS et logo */
+      display: flex;
+      justify-content: center;
+    }
+
     .right-logo img {
-      height: 200px;
+      height: 140px;  /* plus petit */
       width: auto;
     }
 
@@ -98,26 +103,6 @@
       font-size: 0.9em;
       color: #777;
       text-align: center;
-    }
-
-    /* Responsive (mobile) */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .left-logo {
-        align-items: center;
-      }
-
-      .social-links {
-        justify-content: center;
-      }
-
-      .right-logo {
-        margin-top: 15px;
-      }
     }
   </style>
 </head>
