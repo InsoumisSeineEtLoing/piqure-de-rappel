@@ -1,4 +1,4 @@
-name: Auto-update site (sitemap, schema & index)
+name: Auto-update site (sitemap, schema & index + Google ping)
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - name: Update sitemap, schema and index
         run: |
           python << 'EOF'
-          import os, datetime, json, re
+          import os, datetime, json, re, requests
 
           BASE_URL = "https://insoumisseineetloing.github.io/piqure-de-rappel"
           PDF_DIR = "pdfs"
@@ -72,13 +72,11 @@ jobs:
           with open(INDEX_FILE, "r", encoding="utf-8") as f:
               html = f.read()
 
-          # Générer nouvelle liste HTML
           new_list = "\n".join(
               [f'    <li><a href="pdfs/{pdf}" target="_blank">{pdf.replace(".pdf", "").replace("N", "Numéro ")}</a></li>'
               for pdf in pdfs]
           )
 
-          # Remplacer le contenu entre <ul> et </ul>
           updated_html = re.sub(
               r"<ul>.*?</ul>",
               f"<ul>\n{new_list}\n  </ul>",
@@ -90,6 +88,17 @@ jobs:
               f.write(updated_html)
           print("✅ index.html updated.")
 
+          # --- Envoyer un ping à Google pour re-indexation ---
+          ping_url = f"https://www.google.com/ping?sitemap={BASE_URL}/sitemap.xml"
+          try:
+              response = requests.get(ping_url)
+              if response.status_code == 200:
+                  print("🚀 Google notified successfully!")
+              else:
+                  print(f"⚠️ Google ping failed with code {response.status_code}")
+          except Exception as e:
+              print(f"❌ Error notifying Google: {e}")
+
           EOF
 
       - name: Commit and push changes
@@ -97,5 +106,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add sitemap.xml article-schema.json index.html
-          git commit -m "Auto-update sitemap, schema & index"
+          git commit -m "Auto-update sitemap, schema & index + Google ping"
           git push
