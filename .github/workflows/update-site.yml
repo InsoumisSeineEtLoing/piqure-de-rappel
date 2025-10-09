@@ -25,25 +25,22 @@ jobs:
         run: |
           echo "=== Génération automatique ==="
 
-          # Variables
           BASE_URL="https://insoumisseineetloing.github.io/piqure-de-rappel"
           PDF_DIR="pdfs"
           INDEX_FILE="index.html"
           SCHEMA_FILE="article-schema.json"
           SITEMAP_FILE="sitemap.xml"
 
-          echo "Mise à jour de $INDEX_FILE..."
-          echo "<!-- Auto-generated on $(date) -->" > temp_index.html
-          grep -v "<!-- Auto-generated" $INDEX_FILE >> temp_index.html
-          mv temp_index.html $INDEX_FILE
+          # Sauvegarde de l'ancien index
+          cp $INDEX_FILE index_backup_$(date +%Y%m%d_%H%M%S).html
 
-          # Lister les PDF et ajouter au HTML s’ils n’y sont pas
+          echo "Mise à jour de $INDEX_FILE..."
           for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
             name=$(basename "$pdf")
             link="$BASE_URL/$pdf"
             if ! grep -q "$name" "$INDEX_FILE"; then
-              echo "Ajout du lien $name dans index.html"
-              sed -i "/<\/main>/i <p><a href=\"$link\" target=\"_blank\">$name</a></p>" "$INDEX_FILE"
+              echo "Ajout de $name dans index.html"
+              sed -i "/<\/ul>/i \ \ <li><a href=\"$pdf\" target=\"_blank\">$name</a></li>" "$INDEX_FILE"
             fi
           done
 
