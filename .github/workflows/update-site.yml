@@ -31,17 +31,17 @@ jobs:
           SCHEMA_FILE="article-schema.json"
           SITEMAP_FILE="sitemap.xml"
 
-          # Sauvegarde de l'ancien index
+          # Sauvegarde
           cp $INDEX_FILE index_backup_$(date +%Y%m%d_%H%M%S).html
 
-          echo "Mise à jour de $INDEX_FILE..."
+          # Supprime toutes les anciennes lignes de PDF
+          sed -i '/href="pdfs\//d' "$INDEX_FILE"
+
+          # Insère les nouvelles lignes juste avant </ul>
           for pdf in $(ls $PDF_DIR/*.pdf | sort -r); do
             name=$(basename "$pdf")
-            link="$BASE_URL/$pdf"
-            if ! grep -q "$name" "$INDEX_FILE"; then
-              echo "Ajout de $name dans index.html"
-              sed -i "/<\/ul>/i \ \ <li><a href=\"$pdf\" target=\"_blank\">$name</a></li>" "$INDEX_FILE"
-            fi
+            cleanname=$(echo "$name" | sed 's/_/ /g' | sed 's/.pdf//')
+            sed -i "/<\/ul>/i \ \ <li><a href=\"$pdf\" target=\"_blank\">$cleanname</a></li>" "$INDEX_FILE"
           done
 
           echo "Mise à jour de $SCHEMA_FILE..."
@@ -69,7 +69,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html article-schema.json sitemap.xml
-          git commit -m "Auto-update index, schema & sitemap" || echo "Aucun changement à valider"
+          git commit -m "Auto-update index (clean + refresh) & sitemap" || echo "Aucun changement à valider"
           git push origin main || echo "Rien à pousser"
 
       - name: Notify Google of sitemap update
