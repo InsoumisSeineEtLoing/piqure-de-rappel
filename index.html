@@ -22,34 +22,40 @@
 
     header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      gap: 15px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
     }
 
-    /* Logo du haut (LFI) */
-    .top-logo img {
+    /* Bloc LFI + RS */
+    .left-logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .left-logo img {
       width: 220px;
       height: auto;
     }
 
-    /* Liens RS */
     .social-links {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 8px;
+      margin-left: 10px;
     }
 
     .social-links a {
-      display: flex;
-      align-items: center;
-      gap: 6px;
       text-decoration: none;
       color: #c4001a;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .social-links img {
@@ -57,18 +63,11 @@
       height: 20px;
     }
 
-    /* Logo Piqûre */
-    .bottom-logo {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .bottom-logo img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
+    /* Logo Piqûre de Rappel */
+    .right-logo img {
+      height: 160px;
+      width: auto;
+      margin-top: 20px;
     }
 
     h2 {
@@ -107,18 +106,57 @@
       text-align: center;
     }
 
-    /* Responsive (mobile) */
+    /* Version mobile */
     @media (max-width: 600px) {
-      .top-logo img {
-        width: 180px;
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
-      .bottom-logo img {
-        max-width: 90vw;
+      .left-logo {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .left-logo img {
+        width: 250px;
+        max-width: 80vw;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 0;
       }
 
       .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
         font-size: 0.95em;
+      }
+
+      .social-links img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .right-logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .right-logo img {
+        width: 90%;
+        max-width: 500px;
+        height: auto;
       }
     }
   </style>
@@ -127,22 +165,22 @@
 <body>
 
   <header>
-    <div class="top-logo">
+    <div class="left-logo">
       <img src="LFI_Moret_rond_blanc_grand.png" alt="Logo LFI Moret Seine & Loing">
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/lfi_msl/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/people/Insoumis-Seine-Loing/61570853821046/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+          <span>Facebook</span>
+        </a>
+      </div>
     </div>
 
-    <div class="social-links">
-      <a href="https://www.instagram.com/lfi_msl/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
-        <span>Instagram</span>
-      </a>
-      <a href="https://www.facebook.com/people/Insoumis-Seine-Loing/61570853821046/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-        <span>Facebook</span>
-      </a>
-    </div>
-
-    <div class="bottom-logo">
+    <div class="right-logo">
       <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Logo La Piqûre de Rappel">
     </div>
   </header>
