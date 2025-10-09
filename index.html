@@ -11,59 +11,151 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f8f8f8;
+      background-color: #f2eaeb;
       color: #222;
       max-width: 800px;
       margin: 40px auto;
       padding: 20px;
       line-height: 1.6;
     }
-    h1 {
-      text-align: center;
-      color: #c4001a;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
+
+    .left-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .left-logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #c4001a;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .social-links img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .right-logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    h2 {
+      color: #c4001a;
+      border-bottom: 2px solid #c4001a;
+      padding-bottom: 5px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
       margin: 10px 0;
     }
+
     a {
       color: #1565c0;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     footer {
       margin-top: 40px;
       font-size: 0.9em;
       color: #777;
       text-align: center;
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-logo {
+        align-items: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .right-logo {
+        margin-top: 15px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <h1>Piqûres de Rappel</h1>
+
+  <header>
+    <div class="left-logo">
+      <img src="LFI_Moret_rond_blanc_petit.png" alt="Logo LFI Moret Seine & Loing">
+      <div class="social-links">
+        <a href="https://www.instagram.com/lfi_msl/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/people/Insoumis-Seine-Loing/61570853821046/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+          Facebook
+        </a>
+      </div>
+    </div>
+
+    <div class="right-logo">
+      <img src="Logo_la_piqure_de_rappel.jpg" alt="Logo La Piqûre de Rappel">
+    </div>
+  </header>
+
   <p>Le journal local des Insoumis·es Seine & Loing.  
   Retrouvez ici tous les numéros publiés depuis 2025.</p>
 
   <h2>Numéros disponibles :</h2>
   <ul>
-    <li><a href="N001.pdf" target="_blank">Numéro 1 – Janvier 2022</a></li>
-    <li><a href="N002.pdf" target="_blank">Numéro 2 – Avril 2022</a></li>
-    <li><a href="N003.pdf" target="_blank">Numéro 3 – Octobre 2022</a></li>
-    <li><a href="N004.pdf" target="_blank">Numéro 4 – Janvier 2023</a></li>
-    <li><a href="N005.pdf" target="_blank">Numéro 5 – Mai 2023</a></li>
-    <li><a href="N006.pdf" target="_blank">Numéro 6 – Octobre 2023</a></li>
-    <li><a href="N007.pdf" target="_blank">Numéro 7 – Janvier 2024</a></li>
-    <li><a href="N008.pdf" target="_blank">Numéro 8 – Mai 2024</a></li>
-    <li><a href="N009.pdf" target="_blank">Numéro 9 – Septembre 2024</a></li>
-    <li><a href="N010.pdf" target="_blank">Numéro 10 – Décembre 2024</a></li>
-    <li><a href="N011.pdf" target="_blank">Numéro 11 – Mars 2025</a></li>
-    <li><a href="N012.pdf" target="_blank">Numéro 12 – Juin 2025</a></li>
+    <li><a href="pdfs/N001.pdf" target="_blank">Numéro 1 – Janvier 2022</a></li>
+    <li><a href="pdfs/N002.pdf" target="_blank">Numéro 2 – Avril 2022</a></li>
+    <li><a href="pdfs/N003.pdf" target="_blank">Numéro 3 – Octobre 2022</a></li>
+    <li><a href="pdfs/N004.pdf" target="_blank">Numéro 4 – Janvier 2023</a></li>
+    <li><a href="pdfs/N005.pdf" target="_blank">Numéro 5 – Mai 2023</a></li>
+    <li><a href="pdfs/N006.pdf" target="_blank">Numéro 6 – Octobre 2023</a></li>
+    <li><a href="pdfs/N007.pdf" target="_blank">Numéro 7 – Janvier 2024</a></li>
+    <li><a href="pdfs/N008.pdf" target="_blank">Numéro 8 – Mai 2024</a></li>
+    <li><a href="pdfs/N009.pdf" target="_blank">Numéro 9 – Septembre 2024</a></li>
+    <li><a href="pdfs/N010.pdf" target="_blank">Numéro 10 – Décembre 2024</a></li>
+    <li><a href="pdfs/N011.pdf" target="_blank">Numéro 11 – Mars 2025</a></li>
+    <li><a href="pdfs/N012.pdf" target="_blank">Numéro 12 – Juin 2025</a></li>
   </ul>
 
   <footer>
