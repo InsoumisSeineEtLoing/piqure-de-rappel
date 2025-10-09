@@ -11,7 +11,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2eaeb;
+      background-color: #f2eaeb; /* couleur douce */
       color: #222;
       max-width: 800px;
       margin: 40px auto;
@@ -23,26 +23,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
     }
 
+    /* Bloc LFI + RS */
     .left-logo {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+      align-items: center;
+      gap: 8px;
     }
 
     .left-logo img {
-      height: 80px;
-      width: auto;
+      width: 200px;  /* logo plus grand */
+      height: auto;
     }
 
     .social-links {
       display: flex;
-      gap: 12px;
-      align-items: center;
+      justify-content: center;
+      gap: 18px;
     }
 
     .social-links a {
@@ -51,12 +52,12 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .social-links img {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
     }
 
     .right-logo img {
@@ -68,6 +69,10 @@
       color: #c4001a;
       border-bottom: 2px solid #c4001a;
       padding-bottom: 5px;
+    }
+
+    p {
+      text-align: center;
     }
 
     ul {
@@ -95,7 +100,7 @@
       text-align: center;
     }
 
-    /* Responsive */
+    /* Responsive (mobile) */
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -139,7 +144,7 @@
     </div>
   </header>
 
-  <p>Le journal local des Insoumis·es Seine & Loing.  
+  <p>Le journal local des Insoumis·es Seine & Loing.<br>
   Retrouvez ici tous les numéros publiés depuis 2025.</p>
 
   <h2>Numéros disponibles :</h2>
