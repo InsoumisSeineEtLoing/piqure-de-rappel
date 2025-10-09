@@ -1,0 +1,49 @@
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "La Piqûre de Rappel",
+  "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/",
+  "logo": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png",
+  "description": "Journal du Groupe d’Action Insoumis·es Seine & Loing. La Piqûre de Rappel publie depuis 2022 des analyses, enquêtes et actualités politiques locales.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Groupe d’Action Insoumis·es Seine & Loing",
+    "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/"
+  },
+  "mainEntityOfPage": "https://insoumisseineetloing.github.io/piqure-de-rappel/",
+  "article": [
+    {
+      "@type": "NewsArticle",
+      "headline": "La Piqûre de Rappel – Numéro 12",
+      "datePublished": "2025-06-01",
+      "dateModified": "2025-06-01",
+      "author": {
+        "@type": "Organization",
+        "name": "Insoumis·es Seine & Loing"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "La Piqûre de Rappel",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png"
+        }
+      },
+      "image": "https://insoumisseineetloing.github.io/piqure-de-rappel/Logo_la_piqure_de_rappel_sans_fond.png",
+      "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N012.pdf",
+      "description": "Le douzième numéro du journal local et engagé des Insoumis·es Seine & Loing, avec analyses politiques, initiatives locales et perspectives sociales."
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "La Piqûre de Rappel – Numéro 11",
+      "datePublished": "2025-03-01",
+      "dateModified": "2025-03-01",
+      "author": {
+        "@type": "Organization",
+        "name": "Insoumis·es Seine & Loing"
+      },
+      "url": "https://insoumisseineetloing.github.io/piqure-de-rappel/pdfs/N011.pdf",
+      "description": "Onzième numéro du journal politique de Seine & Loing, consacré aux luttes sociales et écologiques du territoire."
+    }
+  ]
+}
