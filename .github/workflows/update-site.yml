@@ -6,6 +6,9 @@ on:
       - "pdfs/**"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -13,6 +16,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Update index.html
         run: |
@@ -29,10 +35,9 @@ jobs:
           {
             echo '<h2>Numéros disponibles :</h2>'
             echo '<ul>'
-            NUM=0
             for FILE in $(ls -v "$PDF_DIR"/*.pdf | sort -r); do
               BASENAME=$(basename "$FILE")
-              
+
               # Détection fichiers nommés Nxxx_YYYY-MM.pdf
               if [[ $BASENAME =~ ^N([0-9]+)_([0-9]{4})-([0-9]{2})\.pdf$ ]]; then
                 NUM="${BASH_REMATCH[1]}"
@@ -55,9 +60,7 @@ jobs:
                 esac
 
                 echo "  <li><a href=\"pdfs/$BASENAME\" target=\"_blank\">Numéro $NUM – $MONTH_NAME $YEAR</a></li>"
-              
               else
-                # Si le nom ne correspond pas au format codé, garder le nom original
                 echo "  <li><a href=\"pdfs/$BASENAME\" target=\"_blank\">$BASENAME</a></li>"
               fi
             done
@@ -72,7 +75,7 @@ jobs:
           git config user.email "actions@github.com"
           git add index.html
           git commit -m "Auto-update index with latest PDF list" || echo "No changes to commit"
-          git push
+          git push origin main
 
       - name: Ping Google
         run: |
