@@ -7,115 +7,133 @@
   <title>La Piqûre de Rappel – Journal des Insoumis·es Seine & Loing</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2eaeb;
-      color: #222;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2eaeb;
+    color: #222;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+  }
 
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    .logos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+  .logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 
+  .logos img:first-child {
+    width: 260px;
+    height: auto;
+  }
+
+  .logos img:last-child {
+    max-width: 480px;
+    width: 90%;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
+
+  .social-links a {
+    text-decoration: none;
+    color: #c4001a;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .social-links img {
+    width: 18px;
+    height: 18px;
+  }
+
+  h2 {
+    color: #c4001a;
+    border-bottom: 2px solid #c4001a;
+    padding-bottom: 5px;
+    text-align: left;
+    margin-top: 40px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin: 8px 0;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  a {
+    color: #1565c0;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #b50000;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  footer a {
+    color: #b50000;
+    text-decoration: none;
+    font-weight: normal;
+    margin: 0 15px;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  footer span {
+    color: #b50000;
+    margin: 0 10px;
+  }
+
+  @media (max-width: 600px) {
     .logos img:first-child {
-      width: 200px;
-      height: auto;
+      width: 180px;
     }
 
     .logos img:last-child {
-      width: 250px;
-      height: auto;
-      margin-top: 10px;
+      max-width: 340px;
+      width: 95%;
+      margin-top: 0;
     }
 
     .social-links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
       margin-top: 10px;
     }
 
-    .social-links a {
-      text-decoration: none;
-      color: #c4001a;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    body {
+      padding: 10px;
     }
-
-    .social-links img {
-      width: 18px;
-      height: 18px;
-    }
-
-    h2 {
-      color: #c4001a;
-      border-bottom: 2px solid #c4001a;
-      padding-bottom: 5px;
-      text-align: left;
-      margin-top: 40px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin: 8px 0;
-      text-align: left;
-      font-size: 16px;
-    }
-
-    a {
-      color: #1565c0;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #b50000;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    footer a {
-      color: #b50000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      .logos img:first-child {
-        width: 180px;
-      }
-      .logos img:last-child {
-        width: 220px;
-      }
-    }
+  }
   </style>
 </head>
 
@@ -123,8 +141,8 @@
 
 <header>
   <div class="logos">
-    <img src="LFI_Moret_rond_blanc_grand.png" alt="Logo LFI Moret Seine & Loing">
-    <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Logo La Piqûre de Rappel">
+    <img src="LFI_Moret_rond_blanc_grand.png" alt="Logo LFI Moret Seine & Loing" style="width:280px; height:auto;">
+    <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="La piqûre de rappel" style="width:520px; height:auto; margin-top:20px;">
   </div>
 
   <div class="social-links">
@@ -151,64 +169,71 @@
   <em>Retrouvez ci-dessous l’ensemble des numéros publiés depuis sa création.</em>
 </p>
 
-  <h2 style="color:#b50000; text-align:left; font-size:20px; font-weight:bold; margin-top:30px;">Numéros disponibles :</h2>
-<ul style="list-style:none; padding-left:0; margin-top:10px;">
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N001_2022-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 1 – Janvier 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N002_2022-04.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 2 – Avril 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N003_2022-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 3 – Octobre 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N004_2023-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 4 – Janvier 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N005_2023-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 5 – Mai 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N006_2023-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 6 – Octobre 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N007_2024-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 7 – Janvier 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N008_2024-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 8 – Mai 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N009_2024-09.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 9 – Septembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N010_2024-12.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 10 – Décembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N011_2025-03.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 11 – Mars 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N012_2025-06.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 12 – Juin 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N013_2025-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 13 – Octobre 2025</a></li>
+<h2>Numéros disponibles :</h2>
+<ul id="liste-piqures" style="list-style:none; padding-left:0; margin-top:10px;">
+  <li id="loading">Chargement des numéros...</li>
 </ul>
 
+<script>
+  const repoOwner = "insoumisseineetloing";
+  const repoName = "piqure-de-rappel";
+  const folderPath = "pdfs";
+
+  function formatFileName(fileName) {
+    const match = fileName.match(/N(\d+)_(\d{4})-(\d{2})/);
+    if (!match) return fileName;
+
+    const numero = parseInt(match[1], 10); // enlève les zéros inutiles
+    const mois = {
+      "01": "Janvier", "02": "Février", "03": "Mars", "04": "Avril",
+      "05": "Mai", "06": "Juin", "07": "Juillet", "08": "Août",
+      "09": "Septembre", "10": "Octobre", "11": "Novembre", "12": "Décembre"
+    }[match[3]] || match[3];
+
+    const annee = match[2];
+    return `Numéro ${numero} – ${mois} ${annee}`;
+  }
+
+  async function chargerListePiqures() {
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+    const ul = document.getElementById("liste-piqures");
+    const loadingItem = document.getElementById("loading");
+
+    try {
+      const response = await fetch(apiUrl);
+      const files = await response.json();
+
+      ul.innerHTML = ""; // vide le message de chargement
+
+      files
+        .filter(f => f.name.endsWith(".pdf") && /^N\d{3}_\d{4}-\d{2}\.pdf$/.test(f.name))
+        .sort((a, b) => a.name.localeCompare(b.name)) // du plus ancien au plus récent
+        .forEach(file => {
+          const li = document.createElement("li");
+          li.style.marginBottom = "5px";
+          li.innerHTML = `<a href="${folderPath}/${file.name}" target="_blank" style="color:#0000cc; text-decoration:none;">${formatFileName(file.name)}</a>`;
+          ul.appendChild(li);
+        });
+
+    } catch (error) {
+      console.error("Erreur lors du chargement des PDF :", error);
+      ul.innerHTML = "<li>Impossible de charger les numéros.</li>";
+    }
+  }
+
+  chargerListePiqures();
+</script>
+
 <footer>
-  <p style="color:#b50000; font-weight:bold; font-size:14px;">
-    <a href="about.html">À propos</a> |
+  <p style="color:#b50000; font-size:15px;">
+    <a href="apropos.html">À propos</a>
+    <span>|</span>
     <a href="contact.html">Contact</a>
   </p>
-  <p style="color:#5a3d3d; font-size:14px; margin-top:10px; font-family:sans-serif;">
+  <p style="color:#696868; font-size:15px; margin-top:10px; font-family:sans-serif;">
     © 2017 – Groupe d’Action Insoumis·es Seine & Loing
   </p>
 </footer>
 
 </body>
 </html>
-<h2 style="color:#b50000; text-align:left; font-size:20px; font-weight:bold; margin-top:30px;">Numéros disponibles :</h2>
-<ul style="list-style:none; padding-left:0; margin-top:10px;">
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N001_2022-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 1 – Janvier 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N002_2022-04.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 2 – Avril 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N003_2022-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 3 – Octobre 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N004_2023-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 4 – Janvier 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N005_2023-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 5 – Mai 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N006_2023-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 6 – Octobre 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N007_2024-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 7 – Janvier 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N008_2024-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 8 – Mai 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N009_2024-09.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 9 – Septembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N010_2024-12.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 10 – Décembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N011_2025-03.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 11 – Mars 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N012_2025-06.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 12 – Juin 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N013_2025-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 13 – Octobre 2025</a></li>
-</ul>
-<h2 style="color:#b50000; text-align:left; font-size:20px; font-weight:bold; margin-top:30px;">Numéros disponibles :</h2>
-<ul style="list-style:none; padding-left:0; margin-top:10px;">
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N001_2022-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 1 – Janvier 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N002_2022-04.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 2 – Avril 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N003_2022-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 3 – Octobre 2022</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N004_2023-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 4 – Janvier 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N005_2023-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 5 – Mai 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N006_2023-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 6 – Octobre 2023</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N007_2024-01.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 7 – Janvier 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N008_2024-05.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 8 – Mai 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N009_2024-09.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 9 – Septembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N010_2024-12.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 10 – Décembre 2024</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N011_2025-03.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 11 – Mars 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N012_2025-06.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 12 – Juin 2025</a></li>
-  <li style='margin-bottom:5px; text-align:left; font-size:16px;'><a href='pdfs/N013_2025-10.pdf' target='_blank' style='color:#0000cc; text-decoration:none;'>Numéro 13 – Octobre 2025</a></li>
-</ul>
