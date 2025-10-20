@@ -31,19 +31,15 @@ jobs:
           # Supprimer l'ancien bloc entre <h2>Numéros disponibles :<\/h2> et <\/ul>
           sed -i '/<h2>Numéros disponibles *:<\/h2>/,/<\/ul>/d' "$INDEX_FILE"
 
-          # Ajouter le nouveau bloc juste avant le footer
-          TMP_FILE=$(mktemp)
-          awk '/<\/footer>/{exit} {print}' "$INDEX_FILE" > "$TMP_FILE"
-
+          # Créer un nouveau bloc HTML
           {
             echo '<h2>Numéros disponibles :</h2>'
             echo '<ul>'
-            # Liste triée du plus ancien au plus récent
             for FILE in $(ls -v "$PDF_DIR"/*.pdf); do
               BASENAME=$(basename "$FILE")
 
               if [[ $BASENAME =~ ^N([0-9]+)_([0-9]{4})-([0-9]{2})\.pdf$ ]]; then
-                NUM=$(echo "${BASH_REMATCH[1]}" | sed 's/^0*//')  # Supprime tous les zéros en tête
+                NUM=$(echo "${BASH_REMATCH[1]}" | sed 's/^0*//') # supprime les zéros
                 YEAR="${BASH_REMATCH[2]}"
                 MONTH="${BASH_REMATCH[3]}"
 
@@ -68,14 +64,17 @@ jobs:
               fi
             done
             echo '</ul>'
-          } >> "$TMP_FILE"
+          } > new_block.html
 
-          # Réajouter le footer original à la fin
-          awk '/<\/footer>/{p=1} p' "$INDEX_FILE" >> "$TMP_FILE"
+          # Insérer le bloc juste avant </footer>
+          awk 'BEGIN{block=0}
+               /<\/footer>/{system("cat new_block.html"); block=1}
+               {print}
+               END{if(block==0) system("cat new_block.html")}' "$INDEX_FILE" > tmpfile && mv tmpfile "$INDEX_FILE"
 
-          mv "$TMP_FILE" "$INDEX_FILE"
+          rm new_block.html
 
-          echo "✅ Bloc <ul> régénéré dans l'ordre croissant, sans zéros, footer inchangé."
+          echo "✅ Liste mise à jour, sans zéros, dans le bon ordre."
 
       - name: Commit and push changes
         run: |
