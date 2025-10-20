@@ -28,13 +28,13 @@ jobs:
           echo "🔍 Scan des fichiers PDF..."
           FILES=$(ls "$PDF_DIR"/*.pdf 2>/dev/null || true)
 
-          # Supprime l'ancien bloc de la liste des numéros
+          # Supprime l'ancien bloc de la liste
           sed -i '/<h2>Numéros disponibles *:<\/h2>/,/<\/ul>/d' "$INDEX_FILE"
 
           # Crée un nouveau bloc HTML (ordre du plus ancien au plus récent)
           {
-            echo '<h2>Numéros disponibles :</h2>'
-            echo '<ul>'
+            echo '<h2 style="color:#b50000; text-align:left; font-size:20px; font-weight:bold; margin-top:30px;">Numéros disponibles :</h2>'
+            echo '<ul style="list-style:none; padding-left:0; margin-top:10px;">'
             for FILE in $(ls "$PDF_DIR"/*.pdf | sort -V); do
               BASENAME=$(basename "$FILE")
 
@@ -58,9 +58,9 @@ jobs:
                   12) MONTH_NAME="Décembre" ;;
                 esac
 
-                echo "  <li><a href=\"pdfs/$BASENAME\" target=\"_blank\">Numéro $NUM – $MONTH_NAME $YEAR</a></li>"
+                echo "  <li style=\"margin-bottom:5px; text-align:left; font-size:16px;\"><a href=\"pdfs/$BASENAME\" target=\"_blank\" style=\"color:#0000cc; text-decoration:none;\">Numéro $NUM – $MONTH_NAME $YEAR</a></li>"
               else
-                echo "  <li><a href=\"pdfs/$BASENAME\" target=\"_blank\">$BASENAME</a></li>"
+                echo "  <li style=\"margin-bottom:5px; text-align:left; font-size:16px;\"><a href=\"pdfs/$BASENAME\" target=\"_blank\" style=\"color:#0000cc; text-decoration:none;\">$BASENAME</a></li>"
               fi
             done
             echo '</ul>'
@@ -70,30 +70,33 @@ jobs:
           sed -i '/À propos/d' "$INDEX_FILE"
           sed -i '/Contact/d' "$INDEX_FILE"
 
-          # Insère la nouvelle liste juste avant la balise </footer>
+          # Insère la nouvelle liste juste avant le footer
           awk 'BEGIN{inserted=0}
                /<\/footer>/{system("cat new_block.html"); inserted=1}
                {print}
                END{if(inserted==0) system("cat new_block.html")}' "$INDEX_FILE" > tmpfile && mv tmpfile "$INDEX_FILE"
 
-          # Réinsère “À propos” et “Contact” tout en bas
+          # Réinsère “À propos” et “Contact” en rouge + © en bas
           {
             echo ''
-            echo '<p style="text-align:center; margin-top:20px;">'
-            echo '<a href="about.html">À propos</a> | <a href="contact.html">Contact</a>'
+            echo '<div style="text-align:center; margin-top:40px;">'
+            echo '<p style="color:#b50000; font-weight:bold; font-size:14px;">'
+            echo '<a href="about.html" style="color:#b50000; text-decoration:none;">À propos</a> | <a href="contact.html" style="color:#b50000; text-decoration:none;">Contact</a>'
             echo '</p>'
+            echo '<p style="color:#5a3d3d; font-size:12px; margin-top:10px;">© 2017 – Groupe d’Action Insoumis·es Seine & Loing</p>'
+            echo '</div>'
           } >> "$INDEX_FILE"
 
           rm new_block.html
 
-          echo "✅ Index mis à jour : ordre ancien→récent, sans zéros, liens en bas."
+          echo "✅ Index mis à jour avec le bon style (gauche, rouge, texte normal)."
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add index.html
-          git commit -m "Auto-update index with latest PDF list" || echo "No changes to commit"
+          git commit -m "Auto-update index with corrected visual style" || echo "No changes to commit"
           git push origin main
 
       - name: Ping Google
