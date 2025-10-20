@@ -20,7 +20,7 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Update index.html automatically
+      - name: Clean and update index.html
         run: |
           INDEX_FILE="index.html"
           PDF_DIR="pdfs"
@@ -28,17 +28,18 @@ jobs:
           echo "🔍 Scan des fichiers PDF..."
           FILES=$(ls "$PDF_DIR"/*.pdf 2>/dev/null || true)
 
-          # Supprimer le vieux bloc "Numéros disponibles"
+          # Nettoyage complet des anciens blocs et footer
           sed -i '/<h2>Numéros disponibles *:<\/h2>/,/<\/ul>/d' "$INDEX_FILE"
-
-          # Supprimer toute ligne contenant "© 2017" ou le petit séparateur "|"
+          sed -i '/À propos/d' "$INDEX_FILE"
+          sed -i '/Contact/d' "$INDEX_FILE"
           sed -i '/© 2017/d' "$INDEX_FILE"
           sed -i '/^ *| *$/d' "$INDEX_FILE"
 
-          # Créer le nouveau bloc (ordre ancien → récent)
+          # Crée la nouvelle liste
           {
             echo '<h2 style="color:#b50000; text-align:left; font-size:20px; font-weight:bold; margin-top:30px;">Numéros disponibles :</h2>'
             echo '<ul style="list-style:none; padding-left:0; margin-top:10px;">'
+
             for FILE in $(ls "$PDF_DIR"/*.pdf | sort -V); do
               BASENAME=$(basename "$FILE")
 
@@ -63,24 +64,21 @@ jobs:
                 esac
 
                 echo "  <li style=\"margin-bottom:5px; text-align:left; font-size:16px;\"><a href=\"pdfs/$BASENAME\" target=\"_blank\" style=\"color:#0000cc; text-decoration:none;\">Numéro $NUM – $MONTH_NAME $YEAR</a></li>"
-              else
-                echo "  <li style=\"margin-bottom:5px; text-align:left; font-size:16px;\"><a href=\"pdfs/$BASENAME\" target=\"_blank\" style=\"color:#0000cc; text-decoration:none;\">$BASENAME</a></li>"
               fi
             done
+
             echo '</ul>'
           } > new_block.html
 
-          # Supprimer les anciennes lignes “À propos” et “Contact”
-          sed -i '/À propos/d' "$INDEX_FILE"
-          sed -i '/Contact/d' "$INDEX_FILE"
-
-          # Insérer le bloc avant le footer
+          # Insertion unique avant </footer>
           awk 'BEGIN{inserted=0}
                /<\/footer>/{system("cat new_block.html"); inserted=1}
                {print}
-               END{if(inserted==0) system("cat new_block.html")}' "$INDEX_FILE" > tmpfile && mv tmpfile "$INDEX_FILE"
+               END{if(inserted==0) system("cat new_block.html")}' "$INDEX_FILE" > tmp && mv tmp "$INDEX_FILE"
 
-          # Réinsérer le pied de page complet avec liens rouges et © 2017
+          rm new_block.html
+
+          # Ajout du pied de page correct
           {
             echo ''
             echo '<div style="text-align:center; margin-top:40px;">'
@@ -91,16 +89,14 @@ jobs:
             echo '</div>'
           } >> "$INDEX_FILE"
 
-          rm new_block.html
+          echo "✅ Page mise à jour proprement (un seul bloc, bon style, footer en bas)."
 
-          echo "✅ Index mis à jour : visuel et pied de page corrigés."
-
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add index.html
-          git commit -m "Fix footer and link style" || echo "No changes to commit"
+          git commit -m "Fix double list and footer layout" || echo "No changes to commit"
           git push origin main
 
       - name: Ping Google
