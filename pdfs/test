@@ -1,4 +1,0 @@
-echo "test" > pdfs/test-trigger.pdf
-git add pdfs/test-trigger.pdf
-git commit -m "Trigger workflow"
-git push
