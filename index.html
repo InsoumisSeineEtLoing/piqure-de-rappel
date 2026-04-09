@@ -5,22 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="La Piqûre de Rappel est le journal du Groupe d’Action Insoumis·es Seine & Loing.">
   <title>La Piqûre de Rappel – Journal des Insoumis·es Seine & Loing</title>
-  <link rel="icon" type="image/png" href="favicon.png"> <style>
-    /* ... (je garde ton style identique) ... */
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
     body { font-family: Arial, sans-serif; background-color: #f2eaeb; color: #222; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
     header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
-    .logos { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 15px; }
+    .logos { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    
+    /* Styles spécifiques pour chaque image */
+    .logo-lfi { width: 350px; height: auto; } /* Très grand comme demandé */
+    .banniere-neuve { width: 100%; max-width: 650px; height: auto; border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .banniere-ancienne { width: 380px; height: auto; opacity: 0.9; } /* Plus petite sous la nouvelle */
+
+    .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 20px; }
     .social-links a { text-decoration: none; color: #c4001a; font-weight: bold; display: flex; align-items: center; gap: 6px; }
     .social-links img { width: 18px; height: 18px; }
+    
     h2 { color: #c4001a; border-bottom: 2px solid #c4001a; padding-bottom: 5px; text-align: left; margin-top: 40px; }
     ul { list-style: none; padding-left: 0; }
-    li { margin: 8px 0; text-align: left; font-size: 16px; }
+    li { margin: 12px 0; text-align: left; font-size: 18px; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
     a { color: #1565c0; text-decoration: none; }
-    a:hover { color: #b50000; }
-    footer { text-align: center; margin-top: 60px; }
+    a:hover { color: #b50000; text-decoration: underline; }
+    
+    footer { text-align: center; margin-top: 60px; border-top: 1px solid #ccc; padding-top: 20px; }
     footer a { color: #b50000; text-decoration: none; margin: 0 15px; }
-    @media (max-width: 600px) { .logos img:first-child { width: 180px; } .logos img:last-child { width: 95%; } }
+
+    @media (max-width: 600px) { 
+      .logo-lfi { width: 250px; } 
+      .banniere-ancienne { width: 280px; }
+      body { padding: 10px; } 
+    }
   </style>
 </head>
 
@@ -28,9 +41,11 @@
 
 <header>
   <div class="logos">
-    <img src="NOM_DE_TON_NOUVEAU_LOGO.png" alt="Logo LFI" style="width:280px; height:auto;">
+    <img src="logo_lfi.png" alt="Logo LFI Moret Seine & Loing" class="logo-lfi">
     
-    <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="La piqûre de rappel" style="width:520px; height:auto; margin-top:20px;">
+    <img src="Banniere_piqure.png" alt="Illustration La Piqûre de Rappel" class="banniere-neuve">
+
+    <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="La piqûre de rappel" class="banniere-ancienne">
   </div>
 
   <div class="social-links">
@@ -40,16 +55,15 @@
   </div>
 </header>
 
-<p style="text-align:center;">
-  <strong>La Piqûre de Rappel</strong> est le journal du <strong>Groupe d’Action Insoumis·es Seine & Loing</strong>.<br>
-  Depuis <strong>2022</strong>, il relaie nos luttes, nos analyses et nos initiatives politiques.
-</p>
+<main style="text-align:center;">
+  <p>
+    <strong>La Piqûre de Rappel</strong> est le journal du <strong>Groupe d’Action Insoumis·es Seine & Loing</strong>.<br>
+    Depuis <strong>2022</strong>, il relaie nos luttes, nos analyses et nos initiatives politiques.
+  </p>
+  <p><em>Retrouvez ci-dessous l’ensemble des numéros publiés (du plus récent au plus ancien).</em></p>
+</main>
 
-<div style="text-align:center; margin: 30px 0;">
-    <img src="IMAGE_ILLUSTRATION_JOURNAL.jpg" alt="Illustration Journal" style="width:100%; max-width:500px; border-radius: 8px;">
-</div>
-
-<h2>Numéros disponibles (du plus récent au plus ancien) :</h2>
+<h2>Numéros disponibles :</h2>
 <ul id="liste-piqures">
   <li id="loading">Chargement des numéros...</li>
 </ul>
@@ -77,10 +91,10 @@
       files
         .filter(f => f.name.endsWith(".pdf") && /^N\d{3}_\d{4}-\d{2}\.pdf$/.test(f.name))
         .sort((a, b) => a.name.localeCompare(b.name)) 
-        .reverse() // MODIF 3 : On inverse ici pour avoir le plus récent en haut
+        .reverse() 
         .forEach(file => {
           const li = document.createElement("li");
-          li.innerHTML = `<a href="${folderPath}/${file.name}" target="_blank" style="color:#0000cc; font-weight:bold;">${formatFileName(file.name)}</a>`;
+          li.innerHTML = `📄 <a href="${folderPath}/${file.name}" target="_blank" style="font-weight:bold;">${formatFileName(file.name)}</a>`;
           ul.appendChild(li);
         });
     } catch (error) {
