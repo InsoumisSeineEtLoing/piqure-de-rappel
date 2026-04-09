@@ -10,7 +10,6 @@
     body { font-family: Arial, sans-serif; background-color: #f2eaeb; color: #222; max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.6; }
     header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
     
-    /* Bannière principale */
     .banniere-principale { width: 100%; max-width: 800px; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); margin-bottom: 15px; mix-blend-mode: multiply; }
     .banniere-ancienne { width: 450px; height: auto; opacity: 0.8; margin-bottom: 20px; }
 
@@ -24,35 +23,26 @@
     a { color: #1565c0; text-decoration: none; }
     a:hover { color: #b50000; text-decoration: underline; }
 
-    /* --- SECTION ACTIONS (Soutenez le journal) --- */
-    .section-abos { text-align: center; margin-top: 80px; padding: 50px 10px; border-top: 4px solid #c4001a; background-color: rgba(255,255,255,0.3); border-radius: 20px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
+    /* --- SECTION ACTIONS (Uniformisée) --- */
+    .section-abos { text-align: center; margin-top: 80px; padding: 50px 10px; border-top: 4px solid #c4001a; background-color: rgba(255,255,255,0.3); border-radius: 20px; }
     .titre-section { color: #c4001a; margin-bottom: 40px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* Style global pour les boutons d'action (Abonnement & Newsletter) */
-    .btn-action { display: block; margin: 30px auto; color: white !important; font-weight: bold; text-decoration: none !important; border-radius: 12px; box-shadow: 0 5px 15px rgba(196, 0, 26, 0.2); transition: all 0.3s ease-in-out; border: none; font-family: 'Arial Black', Gadget, sans-serif; cursor: pointer; text-transform: uppercase; box-sizing: border-box; }
+    .btn-action { display: block; margin: 25px auto; color: white !important; font-weight: bold; text-decoration: none !important; border-radius: 12px; box-shadow: 0 5px 15px rgba(196, 0, 26, 0.2); transition: all 0.3s ease-in-out; border: none; font-family: 'Arial Black', Gadget, sans-serif; cursor: pointer; text-transform: uppercase; box-sizing: border-box; width: 90%; max-width: 750px; padding: 22px; font-size: 22px; letter-spacing: 1px; }
+    .btn-action:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(196, 0, 26, 0.4); filter: brightness(1.1); }
 
-    /* Effet de survol sur les boutons */
-    .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 10px 25px rgba(196, 0, 26, 0.4); filter: brightness(1.1); }
+    .btn-rouge { background: linear-gradient(135deg, #c4001a 0%, #a00016 100%); }
+    .btn-fonce { background: linear-gradient(135deg, #a00016 0%, #7c0011 100%); }
 
-    /* 1. Bouton "S'abonner Gratuitement" - Le plus grand */
-    .btn-abo-gratuit { width: 90%; max-width: 750px; padding: 25px; font-size: 26px; background: linear-gradient(135deg, #c4001a 0%, #a00016 100%); letter-spacing: 1.5px; }
+    /* QR Code à la même taille que les boutons */
+    .qr-code { width: 90%; max-width: 750px; height: auto; margin: 25px 0; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.15); transition: all 0.3s; }
+    .qr-code:hover { transform: scale(1.02); filter: brightness(1.05); }
 
-    /* 2. QR Code (Image conservée) */
-    .qr-code { width: 100%; max-width: 320px; height: auto; margin: 30px 0; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; }
-    .qr-code:hover { transform: scale(1.05); filter: brightness(1.1); }
-
-    /* 3. Bouton "Newsletter" - Le plus petit */
-    .btn-newsletter { width: 80%; max-width: 500px; padding: 18px; font-size: 19px; background: linear-gradient(135deg, #a00016 0%, #7c0011 100%); letter-spacing: 1px; }
-
-    /* --- PIED DE PAGE --- */
     footer { text-align: center; margin-top: 80px; border-top: 1px solid #ccc; padding-top: 25px; opacity: 0.8; }
     footer a { color: #b50000; text-decoration: none; margin: 0 15px; }
 
     @media (max-width: 600px) { 
       .banniere-ancienne { width: 300px; }
-      .qr-code { max-width: 250px; }
-      .btn-abo-gratuit { font-size: 20px; padding: 18px; }
-      .btn-newsletter { font-size: 16px; padding: 14px; }
+      .btn-action { font-size: 16px; padding: 18px; }
       body { padding: 15px; } 
     }
   </style>
@@ -62,7 +52,6 @@
 
 <header>
   <img src="Banniere_piqure.png" alt="La Piqûre de Rappel" class="banniere-principale">
-
   <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Le journal de Moret" class="banniere-ancienne">
 
   <div class="social-links">
@@ -85,18 +74,22 @@
 </ul>
 
 <section class="section-abos">
-  <h3 class="titre-section">Soutenez le journal</h3>
+  <h3 class="titre-section">Pour nous soutenir</h3>
   
-  <a href="https://tr.ee/VVorKai8cX" target="_blank" class="btn-action btn-abo-gratuit">
+  <a href="https://tr.ee/VVorKai8cX" target="_blank" class="btn-action btn-rouge">
     Je m'abonne GRATUITEMENT !
+  </a>
+
+  <a href="https://subscribepage.io/InsoumisesSeineLoing" target="_blank" class="btn-action btn-rouge">
+    Je m'abonne à la newsletter
+  </a>
+
+  <a href="https://actionpopulaire.fr/contributions/?group=a743b171-c3d3-43af-81cc-41e3a696968c" target="_blank" class="btn-action btn-fonce">
+    Je fais un don
   </a>
 
   <a href="https://linktr.ee/insoumisud77" target="_blank">
     <img src="QR_code.png" alt="Scannez le QR Code" class="qr-code">
-  </a>
-
-  <a href="https://subscribepage.io/InsoumisesSeineLoing" target="_blank" class="btn-action btn-newsletter">
-    Je m'abonne à la newsletter
   </a>
 </section>
 
