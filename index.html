@@ -10,7 +10,8 @@
     body { font-family: Arial, sans-serif; background-color: #f2eaeb; color: #222; max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.6; }
     header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
     
-    .banniere-principale { width: 100%; max-width: 800px; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); margin-bottom: 15px; mix-blend-mode: multiply; }
+    /* Plus d'ombre ni d'arrondi sur la bannière */
+    .banniere-principale { width: 100%; max-width: 800px; height: auto; margin-bottom: 15px; }
     .banniere-ancienne { width: 450px; height: auto; opacity: 0.8; margin-bottom: 20px; }
 
     .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 15px; }
@@ -23,8 +24,9 @@
     a { color: #1565c0; text-decoration: none; }
     a:hover { color: #b50000; text-decoration: underline; }
 
-    /* --- SECTION ACTIONS (Uniformisée) --- */
-    .section-abos { text-align: center; margin-top: 80px; padding: 50px 10px; border-top: 4px solid #c4001a; background-color: rgba(255,255,255,0.3); border-radius: 20px; }
+    /* --- SECTION ACTIONS --- */
+    /* On enlève le fond blanc et l'arrondi ici aussi */
+    .section-abos { text-align: center; margin-top: 80px; padding: 50px 10px; border-top: 4px solid #c4001a; }
     .titre-section { color: #c4001a; margin-bottom: 40px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
 
     .btn-action { display: block; margin: 25px auto; color: white !important; font-weight: bold; text-decoration: none !important; border-radius: 12px; box-shadow: 0 5px 15px rgba(196, 0, 26, 0.2); transition: all 0.3s ease-in-out; border: none; font-family: 'Arial Black', Gadget, sans-serif; cursor: pointer; text-transform: uppercase; box-sizing: border-box; width: 90%; max-width: 750px; padding: 22px; font-size: 22px; letter-spacing: 1px; }
@@ -33,9 +35,9 @@
     .btn-rouge { background: linear-gradient(135deg, #c4001a 0%, #a00016 100%); }
     .btn-fonce { background: linear-gradient(135deg, #a00016 0%, #7c0011 100%); }
 
-    /* QR Code à la même taille que les boutons */
-    .qr-code { width: 90%; max-width: 750px; height: auto; margin: 25px 0; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.15); transition: all 0.3s; }
-    .qr-code:hover { transform: scale(1.02); filter: brightness(1.05); }
+    /* Plus d'ombre ni d'arrondi sur le QR Code */
+    .qr-code { width: 90%; max-width: 750px; height: auto; margin: 25px 0; transition: all 0.3s; }
+    .qr-code:hover { transform: scale(1.02); }
 
     footer { text-align: center; margin-top: 80px; border-top: 1px solid #ccc; padding-top: 25px; opacity: 0.8; }
     footer a { color: #b50000; text-decoration: none; margin: 0 15px; }
