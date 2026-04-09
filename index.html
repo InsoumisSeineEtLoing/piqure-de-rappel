@@ -9,28 +9,32 @@
   <style>
     body { font-family: Arial, sans-serif; background-color: #f2eaeb; color: #222; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
     header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
-    .logos { display: flex; flex-direction: column; align-items: center; gap: 15px; }
     
-    /* Styles spécifiques pour chaque image */
-    .logo-lfi { width: 350px; height: auto; } /* Très grand comme demandé */
-    .banniere-neuve { width: 100%; max-width: 650px; height: auto; border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .banniere-ancienne { width: 380px; height: auto; opacity: 0.9; } /* Plus petite sous la nouvelle */
+    /* Bannière principale agrandie */
+    .banniere-principale { width: 100%; max-width: 750px; height: auto; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); margin-bottom: 10px; mix-blend-mode: multiply; }
+    .banniere-ancienne { width: 400px; height: auto; opacity: 0.8; margin-bottom: 20px; }
 
-    .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 20px; }
+    .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 15px; }
     .social-links a { text-decoration: none; color: #c4001a; font-weight: bold; display: flex; align-items: center; gap: 6px; }
     .social-links img { width: 18px; height: 18px; }
     
     h2 { color: #c4001a; border-bottom: 2px solid #c4001a; padding-bottom: 5px; text-align: left; margin-top: 40px; }
     ul { list-style: none; padding-left: 0; }
-    li { margin: 12px 0; text-align: left; font-size: 18px; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
+    li { margin: 12px 0; text-align: left; font-size: 18px; border-bottom: 1px dotted #ccc; padding-bottom: 8px; }
     a { color: #1565c0; text-decoration: none; }
     a:hover { color: #b50000; text-decoration: underline; }
+
+    /* Styles Section Abonnement en bas */
+    .section-abos { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 3px solid #c4001a; }
+    .btn-abo-grand { width: 100%; max-width: 600px; height: auto; margin: 15px 0; border-radius: 8px; transition: 0.3s; }
+    .qr-code { width: 100%; max-width: 220px; height: auto; margin: 15px 0; transition: 0.3s; }
+    .btn-news-petit { width: 100%; max-width: 350px; height: auto; margin: 15px 0; border-radius: 5px; transition: 0.3s; }
+    .section-abos img:hover { transform: scale(1.03); filter: brightness(1.1); }
     
     footer { text-align: center; margin-top: 60px; border-top: 1px solid #ccc; padding-top: 20px; }
     footer a { color: #b50000; text-decoration: none; margin: 0 15px; }
 
     @media (max-width: 600px) { 
-      .logo-lfi { width: 250px; } 
       .banniere-ancienne { width: 280px; }
       body { padding: 10px; } 
     }
@@ -40,13 +44,9 @@
 <body>
 
 <header>
-  <div class="logos">
-    <img src="logo_lfi.png" alt="Logo LFI Moret Seine & Loing" class="logo-lfi">
-    
-    <img src="Banniere_piqure.png" alt="Illustration La Piqûre de Rappel" class="banniere-neuve" style="mix-blend-mode: multiply; filter: contrast(110%);">
+  <img src="Banniere_piqure.png" alt="La Piqûre de Rappel" class="banniere-principale">
 
-    <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="La piqûre de rappel" class="banniere-ancienne">
-  </div>
+  <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Le journal de Moret" class="banniere-ancienne">
 
   <div class="social-links">
     <a href="https://www.instagram.com/lfi_msl/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"><span>@lfi_msl</span></a>
@@ -55,18 +55,31 @@
   </div>
 </header>
 
-<main style="text-align:center;">
+<main style="text-align:center; margin-bottom: 40px;">
   <p>
     <strong>La Piqûre de Rappel</strong> est le journal du <strong>Groupe d’Action Insoumis·es Seine & Loing</strong>.<br>
     Depuis <strong>2022</strong>, il relaie nos luttes, nos analyses et nos initiatives politiques.
   </p>
-  <p><em>Retrouvez ci-dessous l’ensemble des numéros publiés (du plus récent au plus ancien).</em></p>
 </main>
 
-<h2>Numéros disponibles :</h2>
+<h2>Numéros disponibles (du plus récent au plus ancien) :</h2>
 <ul id="liste-piqures">
   <li id="loading">Chargement des numéros...</li>
 </ul>
+
+<section class="section-abos">
+  <a href="https://tr.ee/VVorKai8cX" target="_blank">
+    <img src="banniere_abonnement.png" alt="Je m'abonne GRATUITEMENT !" class="btn-abo-grand">
+  </a>
+  <br>
+  <a href="https://linktr.ee/insoumisud77" target="_blank">
+    <img src="QR_code.png" alt="Scannez le QR Code" class="qr-code">
+  </a>
+  <br>
+  <a href="https://tr.ee/2BLmgDQqOP" target="_blank">
+    <img src="banniere_newsletter.png" alt="Je m'abonne à la newsletter" class="btn-news-petit">
+  </a>
+</section>
 
 <script>
   const repoOwner = "insoumisseineetloing";
@@ -76,7 +89,7 @@
   function formatFileName(fileName) {
     const match = fileName.match(/N(\d+)_(\d{4})-(\d{2})/);
     if (!match) return fileName;
-    const mois = { "01": "Janvier", "02": "Février", "03": "Mars", "04": "Avril", "05": "Mai", "06": "Juin", "07": "Juillet", "08": "Août", "09": "Septembre", "10": "Octobre", "11": "Novembre", "12": "Décembre" }[match[3]] || match[3];
+    const mois = { "01": "Janv.", "02": "Févr.", "03": "Mars", "04": "Avril", "05": "Mai", "06": "Juin", "07": "Juil.", "08": "Août", "09": "Sept.", "10": "Oct.", "11": "Nov.", "12": "Déc." }[match[3]] || match[3];
     return `Numéro ${parseInt(match[1], 10)} – ${mois} ${match[2]}`;
   }
 
