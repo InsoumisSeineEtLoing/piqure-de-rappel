@@ -10,9 +10,7 @@
     body { font-family: Arial, sans-serif; background-color: #f2eaeb; color: #222; max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.6; }
     header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
     
-    /* Plus d'ombre ni d'arrondi sur la bannière */
     .banniere-principale { width: 100%; max-width: 800px; height: auto; margin-bottom: 15px; }
-    .banniere-ancienne { width: 450px; height: auto; opacity: 0.8; margin-bottom: 20px; }
 
     .social-links { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 15px; }
     .social-links a { text-decoration: none; color: #c4001a; font-weight: bold; display: flex; align-items: center; gap: 8px; font-size: 17px; }
@@ -25,7 +23,6 @@
     a:hover { color: #b50000; text-decoration: underline; }
 
     /* --- SECTION ACTIONS --- */
-    /* On enlève le fond blanc et l'arrondi ici aussi */
     .section-abos { text-align: center; margin-top: 80px; padding: 50px 10px; border-top: 4px solid #c4001a; }
     .titre-section { color: #c4001a; margin-bottom: 40px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -35,7 +32,6 @@
     .btn-rouge { background: linear-gradient(135deg, #c4001a 0%, #a00016 100%); }
     .btn-fonce { background: linear-gradient(135deg, #a00016 0%, #7c0011 100%); }
 
-    /* Plus d'ombre ni d'arrondi sur le QR Code */
     .qr-code { width: 90%; max-width: 750px; height: auto; margin: 25px 0; transition: all 0.3s; }
     .qr-code:hover { transform: scale(1.02); }
 
@@ -43,7 +39,6 @@
     footer a { color: #b50000; text-decoration: none; margin: 0 15px; }
 
     @media (max-width: 600px) { 
-      .banniere-ancienne { width: 300px; }
       .btn-action { font-size: 16px; padding: 18px; }
       body { padding: 15px; } 
     }
@@ -54,7 +49,6 @@
 
 <header>
   <img src="Banniere_piqure.png" alt="La Piqûre de Rappel" class="banniere-principale">
-  <img src="Logo_la_piqure_de_rappel_sans_fond.png" alt="Le journal de Moret" class="banniere-ancienne">
 
   <div class="social-links">
     <a href="https://www.instagram.com/lfi_msl/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"><span>@lfi_msl</span></a>
